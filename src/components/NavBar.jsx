@@ -1,0 +1,24 @@
+import { NavLink } from "react-router";
+
+function linkClass({ isActive }) {
+  return isActive ? "nav-link active" : "nav-link";
+}
+
+export default function NavBar() {
+  return (
+    <header className="navbar">
+      <span className="brand">Mini Shop</span>
+      <nav className="nav-links">
+        <NavLink to="/" end className={linkClass}>
+          Home
+        </NavLink>
+        <NavLink to="/products" className={linkClass}>
+          Products
+        </NavLink>
+        <NavLink to="/cart" className={linkClass}>
+          Cart
+        </NavLink>
+      </nav>
+    </header>
+  );
+}
