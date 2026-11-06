@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
@@ -16,7 +17,14 @@ export default function App() {
           <Route index element={<ProductList />} />
           <Route path=":id" element={<ProductDetail />} />
         </Route>
-        <Route path="cart" element={<Cart />} />
+        <Route
+          path="cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Route>
