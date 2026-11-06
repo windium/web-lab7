@@ -6,7 +6,7 @@ function linkClass({ isActive }) {
   return isActive ? "nav-link active" : "nav-link";
 }
 
-export default function NavBar() {
+export default function NavBar({ theme, onToggleTheme }) {
   const { user, logout } = useAuth();
   // the selector returns a number, so the nav bar only re-renders
   // when the count changes (not when a price or title changes)
@@ -28,6 +28,9 @@ export default function NavBar() {
       </nav>
 
       <div className="nav-user">
+        <button type="button" onClick={onToggleTheme}>
+          {theme === "light" ? "Dark mode" : "Light mode"}
+        </button>
         {user ? (
           <>
             <span className="username">{user.username}</span>
