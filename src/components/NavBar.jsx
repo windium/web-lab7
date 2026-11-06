@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import { useAuth } from "../context/AuthContext";
+import { selectItemCount, useCartStore } from "../store/cartStore";
 
 function linkClass({ isActive }) {
   return isActive ? "nav-link active" : "nav-link";
@@ -7,6 +8,9 @@ function linkClass({ isActive }) {
 
 export default function NavBar() {
   const { user, logout } = useAuth();
+  // the selector returns a number, so the nav bar only re-renders
+  // when the count changes (not when a price or title changes)
+  const itemCount = useCartStore(selectItemCount);
 
   return (
     <header className="navbar">
@@ -19,7 +23,7 @@ export default function NavBar() {
           Products
         </NavLink>
         <NavLink to="/cart" className={linkClass}>
-          Cart
+          Cart ({itemCount})
         </NavLink>
       </nav>
 
